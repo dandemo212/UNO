@@ -10,6 +10,9 @@ class Deck:
     def __init__(self):
         self.size = 0
         self.cards = []
+
+    def get_cards(self):
+        return self.cards
     
     def add_card(self,card: Card) -> None:
         self.cards.append(card)
@@ -31,8 +34,11 @@ class Deck:
         return self.cards.pop() # provide card & remove it from the deck
     
     def peek(self) -> Card:
-        return self.cards[len(self.cards)-1] # provide top card without removing from the deck
+        return self.cards[-1] # provide top card without removing from the deck
     
+    def peek_at(self,idx:int):
+        return self.cards[idx]
+
     def get_size(self) -> int:
         return self.size
     
@@ -42,7 +48,7 @@ class Deck:
             string += str(i) + "\n"
         return string
     
-def build_deck():
+def build_deck(shuffled=False):
     deck = Deck()
     # first, build the colored cards
     colors = [CardColor.BLUE,CardColor.GREEN,CardColor.RED,CardColor.YELLOW]
@@ -81,5 +87,8 @@ def build_deck():
     deck.add_card(draw4)
     deck.add_card(draw4)
     deck.add_card(draw4)
+
+    if(shuffled):
+        deck.shuffle()
 
     return deck

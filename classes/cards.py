@@ -39,6 +39,9 @@ class Card:
     def get_color(self):
         return self.color
     
+    def set_color(self,color: CardColor):
+        self.color = color
+    
     def get_type(self):
         return self.type
 
