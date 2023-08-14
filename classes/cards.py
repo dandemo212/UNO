@@ -25,6 +25,9 @@ class CardType(Enum):
     WILD = "wild"
     REVERSE = "reverse"
 
+    def __str__(self):
+        return self.value
+
 class Card:
 
     type = CardType.UNSET
@@ -52,6 +55,10 @@ class Card:
         return str(self.color) + " | " + str(self.type) + " | " + str(self.number)
 
 def cards_compatible(first: Card,second:Card) -> bool:
+    if first.get_color() == CardType.WILD:
+        return True
+    if first.get_type() == CardType.UNSET and first.get_color() == CardColor.UNSET:
+        return True
     if first.get_color() == second.get_color():
         return True
     elif first.get_type() == second.get_type():
