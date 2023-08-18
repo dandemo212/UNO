@@ -72,8 +72,8 @@ def build_deck(shuffled=False):
         deck.add_card(zero_card)
         # 2 draw 2
         dr2 = Card(color,CardType.DRAWTWO,-1)
-        #deck.add_card(dr2)
-        #deck.add_card(dr2)
+        # deck.add_card(dr2)
+        # deck.add_card(dr2)
         # 2 reverse
         rev = Card(color,CardType.REVERSE,-1)
         deck.add_card(rev)
@@ -96,10 +96,10 @@ def build_deck(shuffled=False):
     deck.add_card(wild)
     # 4 draw 4
     draw4 = Card(CardColor.WILD,CardType.DRAWFOUR,-1)
-    #deck.add_card(draw4)
-    #deck.add_card(draw4)
-    #deck.add_card(draw4)
-    #deck.add_card(draw4)
+    # deck.add_card(draw4)
+    # deck.add_card(draw4)
+    # deck.add_card(draw4)
+    # deck.add_card(draw4)
 
     if(shuffled):
         deck.shuffle()
