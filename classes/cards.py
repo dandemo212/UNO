@@ -55,7 +55,7 @@ class Card:
         return str(self.color) + " | " + str(self.type) + " | " + str(self.number)
 
 def cards_compatible(first: Card,second:Card) -> bool:
-    if first.get_color() == CardType.WILD:
+    if second.get_color() == CardType.WILD:
         return True
     if first.get_type() == CardType.UNSET and first.get_color() == CardColor.UNSET:
         return True

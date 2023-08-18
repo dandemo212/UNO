@@ -47,6 +47,9 @@ class Deck:
     def peek_at(self,idx:int):
         if len(self.cards) == 0:
             return Card(CardColor.UNSET,CardType.UNSET,-1)
+        if idx >= len(self.cards):
+            print(self.cards)
+            raise Exception("INDEX OUT OF RANGE -> " + str(idx) + " | " + str(len(self.cards)))
         return self.cards[idx]
 
     def get_size(self) -> int:
