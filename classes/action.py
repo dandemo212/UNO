@@ -150,16 +150,28 @@ class Action:
         
         return rewards
 
-def select_option(action: Action,decision:int):
+def select_option(action: Action,decision:int,qtable,state):
     # decision == 0 -> exploit
     # decision == 1 -> explore
     rewards = action.calculate_rewards()
+    hash_list = get_hashlist()
     #print("REWARDS",rewards)
     if decision == 0:
         # exploit what is already known
-        max_reward = rewards.index(max(rewards))
+        new_rewards = []
+        for i in range(len(rewards)-1):
+            if rewards[i] != -2:
+                # do stuff
+                new_rewards.append(rewards[i]+(2*qtable[hash_list.index(state.hexdigest()),(hash_list.index(action.state_key(action.decks[0].peek_at(i)).hexdigest()))]))
+            else:
+                new_rewards.append(-2)
+        # don't forget draw
+        new_rewards.append(rewards[-1]+(2*qtable[hash_list.index(state.hexdigest()),(hash_list.index(action.state_key("DRAW").hexdigest()))]))
+        max_reward = new_rewards.index(max(new_rewards))
+        #print(rewards)
+        #print(new_rewards)
         #print("EXPLOIT",max_reward)
-        return (max_reward,rewards[max_reward])
+        return (max_reward,new_rewards[max_reward])
     else:
         # explore to find something new -- pick random that isn't -2
         possible_indexes = []
